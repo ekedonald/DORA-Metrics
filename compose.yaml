@@ -1,6 +1,7 @@
 name: dora
 services:
   dora-metrics:
+    image: dora-metrics:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,3 +9,4 @@ services:
     - "4040:4040"
     env_file:
     - .env
+    restart: unless-stopped

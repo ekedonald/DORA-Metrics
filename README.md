@@ -9,8 +9,9 @@
   - [Step 2: Create .env File](#step-2-create-env-file)
   - [Step 3: Create Dockerfile](#step-3-create-dockerfile)
   - [Step 4: Build and Run Docker Container](#step-4-build-and-run-docker-container)
-  - [Step 5: Set Up GitHub Webhook](#step-5-set-up-github-webhook)
-  - [Step 6: Integrate with Prometheus](#step-6-integrate-with-prometheus)
+  - [Step 5: SetUp and Run with Docker Compose](#step-5-setup-and-run-with-docker-compose)
+  - [Step 6: Set Up GitHub Webhook](#step-6-set-up-github-webhook)
+  - [Step 7: Integrate with Prometheus](#step-7-integrate-with-prometheus)
 - [Using the DORA Metrics App](#using-the-dora-metrics-app)
 
 
@@ -89,18 +90,43 @@ CMD ["./dora-metrics"]
 Build the Docker image:
 
 ```bash
-docker build -t dora-metrics-app .
+docker build -t dora-metrics .
 ```
 
 Run the Docker container:
 
 ```bash
-docker run -d --name dora-metrics -p 4040:4040 --env-file .env dora-metrics-app
+docker run -d --name dora-metrics -p 4040:4040 --env-file .env dora-metrics
 ```
 
 This command runs the container in detached mode, maps port 4040 from the container to the host and uses the environment variables from the `.env` file.
 
-### Step 5: Set Up GitHub Webhook
+### Step 5: SetUp and Run with Docker Compose
+
+Alternatively, you can use Docker Compose to simplify the setup and running process. Create a `compose.yaml` file in the project root with the following content:
+
+```yaml
+name: dora
+services:
+  dora-metrics:
+    image: dora-metrics:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4040:4040"
+    env_file:
+      - .env
+    restart: unless-stopped
+```
+
+To build and start the DORA metrics app using Docker Compose, run:
+
+```bash
+docker compose up -d
+```
+
+### Step 6: Set Up GitHub Webhook
 
 1. Go to your GitHub repository settings.
 2. Navigate to "Webhooks" and click "Add webhook".
@@ -110,7 +136,7 @@ This command runs the container in detached mode, maps port 4040 from the contai
 6. Select the events you want to trigger the webhook (e.g. Pushes, Workflow runs).
 7. Click "Add webhook".
 
-### Step 6: Integrate with Prometheus
+### Step 7: Integrate with Prometheus
 
 To scrape metrics from your DORA metrics app, add the following job to your Prometheus configuration:
 
