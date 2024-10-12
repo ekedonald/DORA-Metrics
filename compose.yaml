@@ -1,0 +1,10 @@
+name: dora
+services:
+  dora-metrics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "4040:4040"
+    env_file:
+    - .env
