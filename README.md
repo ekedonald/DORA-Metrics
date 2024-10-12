@@ -129,10 +129,10 @@ Once deployed, the app will start collecting DORA metrics based on your GitHub r
 
 The app responds to GitHub webhook events to update metrics in real-time. It calculates:
 
-- Deployment Frequency based on successful workflow runs.
-- Lead Time for Changes by analyzing the time between commit and successful deployment.
-- Time to Restore Service by examining issues labeled as "incident".
-- Change Failure Rate by comparing failed deployments to total deployments.
+- **Deployment Frequency** based on successful workflow runs.
+- **Lead Time for Changes** by analyzing the time between commit and successful deployment.
+- **Time to Restore Service** by examining issues labeled as "incident".
+- **Change Failure Rate** by comparing failed deployments to total deployments.
 
 You can visualize these metrics using Grafana or any other Prometheus-compatible visualization tool.
 
