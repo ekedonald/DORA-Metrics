@@ -114,9 +114,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4040:4040"
+    - "4040:4040"
     env_file:
-      - .env
+    - .env
     restart: unless-stopped
 ```
 
