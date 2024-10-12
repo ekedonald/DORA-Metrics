@@ -9,7 +9,7 @@
   - [Step 2: Create .env File](#step-2-create-env-file)
   - [Step 3: Create Dockerfile](#step-3-create-dockerfile)
   - [Step 4: Build and Run Docker Container](#step-4-build-and-run-docker-container)
-  - [Step 5: SetUp and Run with Docker Compose](#step-5-setup-and-run-with-docker-compose)
+  - [Step 5: Set Up and Run with Docker Compose](#step-5-set-up-and-run-with-docker-compose)
   - [Step 6: Set Up GitHub Webhook](#step-6-set-up-github-webhook)
   - [Step 7: Integrate with Prometheus](#step-7-integrate-with-prometheus)
 - [Using the DORA Metrics App](#using-the-dora-metrics-app)
@@ -101,7 +101,7 @@ docker run -d --name dora-metrics -p 4040:4040 --env-file .env dora-metrics
 
 This command runs the container in detached mode, maps port 4040 from the container to the host and uses the environment variables from the `.env` file.
 
-### Step 5: SetUp and Run with Docker Compose
+### Step 5: Set Up and Run with Docker Compose
 
 Alternatively, you can use Docker Compose to simplify the setup and running process. Create a `compose.yaml` file in the project root with the following content:
 
